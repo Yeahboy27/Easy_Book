@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, Text, StyleSheet, Image, Platform} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 class BookCollectionCell extends PureComponent {
     constructor(props) {
@@ -18,9 +18,9 @@ class BookCollectionCell extends PureComponent {
 
         return (
             <View style={[styles.container]}>
-                <View style={styles.viewImage}>
+                <TouchableOpacity style={styles.viewImage} onPress={() => this.props.navigation.push('Detail')}>
                     <Image  style={styles.image} source={{ uri: data.link_thumbnail }}/>    
-                </View>
+                </TouchableOpacity>
                 <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>{data.title}</Text>
                 {this._renderData()}
             </View>

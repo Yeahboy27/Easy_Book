@@ -9,21 +9,6 @@ import React from "react";
 import {Image, TouchableHighlight, StyleSheet} from 'react-native'
 
 const StackHome = createStackNavigator({
-    // Main: {
-    //     screen: MainContainer,
-        // navigationOptions = ({navigation}) => {
-        //     return {
-        //         title: 'Trang chủ',
-        //         headerRight: (
-        //             <TouchableHighlight onPress={navigation.getParam('navigateSearch')}>
-        //                 <Image
-        //                 style={{width: 20, height: 20, marginRight: 12}}
-        //                 source={require('../images/main_search.png')}
-        //                 />
-        //         </TouchableHighlight>
-        //       ),}
-        // }
-    // },
     Main: MainContainer,
     Detail: DetailContainer,
     Search: Search,

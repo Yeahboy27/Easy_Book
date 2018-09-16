@@ -27,16 +27,16 @@ class Salient extends React.PureComponent {
             let listSection = salient.map((r, i) => {
                 switch(r.type){
                     case 0:
-                        return <HeaderHighlight key={i} {...this.props}/>
+                        return <HeaderHighlight key={i} {...this.props} />
                         break
                     case 2:
                         return (
-                            <ListBook  key={i} title={r.title} data={r.data} />
+                            <ListBook  key={i} title={r.title} data={r.data} navigation={this.props.navigation} />
                         )
                         break
                     case 3:
                         return (
-                            <CollectionBook key={i}  title={r.title} data={r.data} />
+                            <CollectionBook key={i}  title={r.title} data={r.data} navigation={this.props.navigation} />
                         )
                         break
                 }          

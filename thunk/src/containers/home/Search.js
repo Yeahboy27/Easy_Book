@@ -4,6 +4,7 @@ import { SearchBar } from 'react-native-elements'
 import * as action from '../../actions/home'
 import CollectionBook from '../../components/collectionBook';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 const { StatusBarManager } = NativeModules;
 
@@ -97,4 +98,4 @@ function mapStateToProps(state) {
     return({result:  state.home.search_result})
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(Search))

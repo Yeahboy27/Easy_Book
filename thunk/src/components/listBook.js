@@ -9,7 +9,7 @@ class ListBook extends PureComponent {
 
     _keyExtractor = (item, index) => item.id.toString();
     _renderItem = ({item}) => (
-        <HomeBookComponent id={item.id} title={item.title} url={item.link_thumbnail} author={item.authors}/>
+        <HomeBookComponent id={item.id} title={item.title} url={item.link_thumbnail} author={item.authors} navigation={this.props.navigation} />
     );
 
     render() {

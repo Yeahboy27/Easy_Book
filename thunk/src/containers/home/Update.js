@@ -11,7 +11,7 @@ class Update extends React.PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <CollectionBook data={this.props.data} type={1} />
+                <CollectionBook data={this.props.data} type={1} navigation={this.props.navigation} />
             </View>
         )
     }

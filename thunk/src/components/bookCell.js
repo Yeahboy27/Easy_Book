@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 class BookCell extends PureComponent {
     constructor(props) {
@@ -9,7 +9,9 @@ class BookCell extends PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Image  style={styles.image} source={{uri: this.props.url}}/>
+                <TouchableOpacity style={{width: 90, height: 140}} onPress={() => this.props.navigation.push('Detail')}>
+                    <Image  style={styles.image} source={{uri: this.props.url}}/>
+                </TouchableOpacity>
                 <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>{this.props.title}</Text>
                 <Text style = {styles.author} numberOfLines={1} ellipsizeMode='tail'>
                     {this.props.author}

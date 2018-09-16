@@ -15,7 +15,7 @@ class _MainContainer extends React.PureComponent {
         return {
             title: 'Trang chủ',
             headerRight: (
-                <TouchableHighlight style={{width: 40, height: 30, marginRight: 12}} onPress={navigation.getParam('navigateSearch')}>
+                <TouchableHighlight style={{width: 40, height: 30, marginRight: 0}} onPress={navigation.getParam('navigateSearch')}>
                     <Image
                     style={{width: 20, height: 20, marginRight: 0}}
                     source={require('../../images/main_search.png')}
@@ -45,11 +45,11 @@ class _MainContainer extends React.PureComponent {
     _renderScene = ({ route }) => {
         switch (route.key) {
             case 'highlight':
-                return <Salient />;
+                return <Salient navigation={this.props.navigation}/>
             case 'update':
-                return <Update />
+                return <Update navigation={this.props.navigation}/>
             case 'all':
-                return <All />
+                return <All navigation={this.props.navigation}/>
             default:
                 return null;
         }

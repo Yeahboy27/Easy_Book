@@ -2,8 +2,12 @@ import React, {PureComponent} from 'react';
 import BookCollectionCell from './bookCollectionCell'
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import { NativeModules } from 'react-native';
+import { withNavigation } from 'react-navigation';
+
+
 const { PlatformConstants } = NativeModules;
 const deviceType = PlatformConstants.interfaceIdiom;
+
 var columns = 3
 if(deviceType=='phone'){
     columns = 3
@@ -11,7 +15,7 @@ if(deviceType=='phone'){
     columns = 5
 }
 
-export default class CollectionBook extends PureComponent {
+class CollectionBook extends PureComponent {
     constructor(props) {
         super(props)
     }
@@ -40,7 +44,8 @@ export default class CollectionBook extends PureComponent {
         }
     }
 
-    _keyExtractor = (item, index) => item.id.toString();
+    // _keyExtractor = (item, index) => item.id.toString();
+    _keyExtractor = (item, index) => index;
 
     _renderItem = ({item, index}) => {
         if (item.empty) {
@@ -48,7 +53,7 @@ export default class CollectionBook extends PureComponent {
         } else {
             return (
                 <View style={[styles.viewItem,index%3 == 2 ? {marginRight: 0} : {marginRight: 15}]}>
-                <BookCollectionCell data={item} index={index}/>
+                <BookCollectionCell data={item} index={index} navigation={this.props.navigation}/>
                 </View>
             )
         }
@@ -134,3 +139,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
     }
 })
+
+export default withNavigation(CollectionBook)

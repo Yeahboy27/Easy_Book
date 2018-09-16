@@ -14,7 +14,7 @@ class All extends React.PureComponent {
         if(this.props.data.length > 0) {
         return (
             <View style={styles.container}>
-                <CollectionBook data={this.props.data} type={2} />
+                <CollectionBook data={this.props.data} type={2} navigation={this.props.navigation} />
             </View>
         )} else {
             return  <Spinner
