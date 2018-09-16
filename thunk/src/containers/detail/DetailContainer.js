@@ -1,6 +1,6 @@
 import React from 'react'
-import {Text, Button, Image} from 'react-native-elements'
-import {View, StyleSheet} from 'react-native'
+
+import {View, StyleSheet, Image, Text} from 'react-native'
 import * as action from '../../actions/detail'
 import Spinner from '../../components/base/Spinner'
 import { withNavigation } from 'react-navigation';
@@ -30,6 +30,19 @@ class DetailContainer extends React.Component {
 		}
 	}
 
+    _renderStatus = () => {
+        console.log(this.props.result.status)
+        switch (this.props.result.status){
+            case 0: 
+                return <Text style={styles.author}>Hoàn thành</Text>
+                break;
+            case 1:
+                return <Text style={styles.author}>Còn tiếp</Text>
+                break;
+            default: 
+                return <Text> </Text>
+            }
+    }
 
     render() {
         if(this.state.isLoading) {
@@ -45,13 +58,18 @@ class DetailContainer extends React.Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.header}>
-                    <Image source={{uri: result.link_thumbnail}}/>
+                    <Image  style={styles.image} source={{ uri: result.link_thumbnail }}/>    
                     <View style={styles.information}>
                         <View style={styles.data}>
                             <View style={styles.core}>
                                 <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>{result.title}</Text>
+                                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.author}>{result.authors}</Text>
                             </View>
-                            <View style={styles.more}></View>
+                            <View style={styles.more}>
+                                {this._renderStatus()}
+                                <Text style={styles.author}>{result.total_chap} chương</Text>
+                                <Text style={styles.author}>{result.numbe_of_like} lượt thích</Text>
+                            </View>
                         </View>
                         <View style={styles.action}></View>
                     </View>
@@ -75,8 +93,8 @@ const styles = StyleSheet.create({
     image: {
         width: 100,
         height: 150,
-        marginTop: 0,
-        marginLeft: 0,
+        // marginTop: 0,
+        // marginLeft: 0,
     },
     information: {
         marginTop: 0,
@@ -99,9 +117,13 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontWeight: 'bold',
         fontSize: 14,
+
     },
+    author: {
+        fontSize: 12,
+        color: '#9b9b9b',
+    }
 
 })
 function mapStateToProps(state) {
