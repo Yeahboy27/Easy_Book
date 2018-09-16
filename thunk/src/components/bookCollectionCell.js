@@ -15,7 +15,6 @@ class BookCollectionCell extends PureComponent {
 
     render() {
         var data = this.props.data
-        console.log(data)
         return (
             <View style={[styles.container]}>
                 <TouchableOpacity style={styles.viewImage} onPress={() => this.props.navigation.push('Detail')}>

@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-    information: {}
+    information: []
 }
 
 export default function (state = initialState, action) {
@@ -12,6 +12,8 @@ export default function (state = initialState, action) {
                 ...state,
                 information: payload
             }
+        default:
+            return state;
     }
 
 }

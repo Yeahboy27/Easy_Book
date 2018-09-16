@@ -3,6 +3,9 @@ import {Text, Button, Image} from 'react-native-elements'
 import {View, StyleSheet} from 'react-native'
 import * as action from '../../actions/detail'
 import Spinner from '../../components/base/Spinner'
+import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux'
+
 
 
 class DetailContainer extends React.Component {
@@ -22,28 +25,31 @@ class DetailContainer extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-		if (nextProps.nowPlayingMovies && nextProps.popularMovies) {
+		if (nextProps.result) {
 			this.setState({ isLoading: false });
 		}
 	}
 
 
     render() {
-        const {result} = this.props
         if(this.state.isLoading) {
-             return  <Spinner
-            size='large'
-            animating
-            style={{al: 20}} />
-        }
+             return  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Spinner
+                size='large'
+                animating
+                style={{al: 20}} />
+            </View>
+        } else {
+            const {result} = this.props
+            console.log(result)
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.header}>
-                    <Image />
+                    <Image source={{uri: result.link_thumbnail}}/>
                     <View style={styles.information}>
                         <View style={styles.data}>
                             <View style={styles.core}>
-                                <Text numberOfLines={2} ellipsizeMode='tail' style={styles.title}></Text>
+                                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>{result.title}</Text>
                             </View>
                             <View style={styles.more}></View>
                         </View>
@@ -52,7 +58,7 @@ class DetailContainer extends React.Component {
                 </View>
             </View>
         )
-    }
+    }}
 }
 
 const styles = StyleSheet.create({
