@@ -42,7 +42,7 @@ class Salient extends React.PureComponent {
                 }          
             })
             return (
-                <View style={StyleSheet.container}>  
+                <View style={{flex: 1}}>  
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {listSection}
                     </ScrollView>
@@ -56,13 +56,7 @@ class Salient extends React.PureComponent {
     }
 }   
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        backgroundColor: 'blue'
-    },
-})
+
 
 function mapStateToProps (state) {
     return {
