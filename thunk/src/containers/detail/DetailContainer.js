@@ -8,6 +8,8 @@ class DetailContainer extends React.Component {
     }
 
     render() {
+        console.log('Init Branch Detail') 
+
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>Detail!</Text>
