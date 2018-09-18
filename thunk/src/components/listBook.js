@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import HomeBookComponent from './bookCell'
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 class ListBook extends PureComponent {
     constructor(props) {
@@ -63,4 +64,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListBook
+export default withNavigation(ListBook)

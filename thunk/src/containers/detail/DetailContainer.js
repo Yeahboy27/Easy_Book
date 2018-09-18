@@ -1,10 +1,12 @@
 import React from 'react'
 import {Button} from 'react-native-elements'
-import {View, StyleSheet, Image, Text, TouchableHighlight} from 'react-native'
+import {View, StyleSheet, Image, Text, TouchableHighlight, ScrollView, Dimensions} from 'react-native'
+import { TabView, PagerPan, TabBar} from 'react-native-tab-view';
 import * as action from '../../actions/detail'
 import Spinner from '../../components/base/Spinner'
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux'
+import Information from './Information'
 
 
 
@@ -12,7 +14,12 @@ class DetailContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-			isLoading: true,
+            isLoading: true,
+            index: 0,
+            routes: [
+                { key: 'information', title: 'Thông tin' },
+                { key: 'comment', title: 'Bình luận' },
+            ],
 		};        
     }
 
@@ -30,8 +37,8 @@ class DetailContainer extends React.Component {
 		}
 	}
 
+    // Render Header
     _renderStatus = () => {
-        console.log(this.props.result.status)
         switch (this.props.result.status){
             case 0: 
                 return <Text style={styles.author}>Hoàn thành</Text>
@@ -44,6 +51,49 @@ class DetailContainer extends React.Component {
             }
     }
 
+     // Render Tabview
+    _renderScene = ({ route }) => {
+        switch (route.key) {
+            case 'information':
+                return <Information />
+            case 'comment':
+                return <Information />
+            default:
+                return null;
+        }
+      };
+     
+    _renderPager = (props) => (<PagerPan {...props}
+        swipeEnabled={false}
+        />) 
+
+        _renderLabel(props) {
+            let index = 0;
+            return ({ route }) => {
+              const focused = index === props.navigationState.index;
+              index += 1;
+              return (
+                <View>
+                  <Text
+                    style={[
+                      focused ? {color: '#007AFF'}: {color: '#9b9b9b'},
+                    ]}>
+                    {route.title}
+                  </Text>
+                </View>
+              );
+            }
+        }
+        
+    _renderTabbar = (props) => (
+        <TabBar {...props}
+        style={styles.tabView}
+        indicatorStyle={styles.indicatorStyle}
+        labelStyle={styles.labelTabStyle}
+        renderLabel={this._renderLabel(props)}
+        />
+    )
+
     render() {
         if(this.state.isLoading) {
              return  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -53,33 +103,44 @@ class DetailContainer extends React.Component {
                 style={{al: 20}} />
             </View>
         } else {
-            const {result} = this.props
-            console.log(result)
+        const {result} = this.props
+        console.log(result)
         return (
             <View style={styles.container}>
                 <View style={styles.line}></View>
-                <View style={styles.header}>
-                    <Image  style={styles.image} source={{ uri: result.link_thumbnail }}/>    
-                    <View style={styles.information}>
-                        <View style={styles.data}>
-                            <View style={styles.core}>
-                                <Text numberOfLines={2} ellipsizeMode='tail' style={styles.title}>{result.title}</Text>
-                                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.author}>{result.authors}</Text>
+                <ScrollView>
+                    <View style={styles.header}>
+                        <Image  style={styles.image} source={{ uri: result.link_thumbnail }}/>    
+                        <View style={styles.information}>
+                            <View style={styles.data}>
+                                <View style={styles.core}>
+                                    <Text numberOfLines={2} ellipsizeMode='tail' style={styles.title}>{result.title}</Text>
+                                    <Text numberOfLines={1} ellipsizeMode='tail' style={styles.author}>{result.authors}</Text>
+                                </View>
+                                <View style={styles.more}>
+                                    {this._renderStatus()}
+                                    <Text style={styles.author}>{result.total_chap} chương</Text>
+                                    <Text style={styles.author}>{result.numbe_of_like} lượt thích</Text>
+                                </View>
                             </View>
-                            <View style={styles.more}>
-                                {this._renderStatus()}
-                                <Text style={styles.author}>{result.total_chap} chương</Text>
-                                <Text style={styles.author}>{result.numbe_of_like} lượt thích</Text>
+                            <View style={styles.action}>
+                                <TouchableHighlight style={styles.buttonLike}>
+                                    <Image style={{flex: 1, width: 30, height: 30}} source={require('../../images/detail_unlike.png')} />
+                                </TouchableHighlight>
+                                <Button title={"ĐỌC"} style={styles.buttonRead}/>
                             </View>
-                        </View>
-                        <View style={styles.action}>
-                             <TouchableHighlight style={styles.buttonLike}>
-                                 <Image style={{flex: 1, width: 30, height: 30}} source={require('../../images/detail_unlike.png')} />
-                             </TouchableHighlight>
-                             <Button title={"ĐỌC"} style={styles.buttonRead}/>
                         </View>
                     </View>
-                </View>
+                    <View style={{marginTop:12, height: 1, width: "100%", backgroundColor: '#e7e7e7' }}></View>
+                    <TabView style={styles.tabView}
+                        navigationState={this.state}
+                        renderScene={this._renderScene}
+                        onIndexChange={index => this.setState({ index })}
+                        initialLayout={{ width: Dimensions.get('window').width, height: 200 }}
+                        renderPager={this._renderPager}
+                        renderTabBar={this._renderTabbar}
+                    />
+                </ScrollView>
             </View>
         )
     }}
@@ -94,6 +155,12 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 1,
         backgroundColor: "#9b9b9b"
+    },
+    tabView: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: '#FFFFFF',
     },
     header: {
         flexDirection: 'row',
@@ -132,7 +199,7 @@ const styles = StyleSheet.create({
         marginRight: 12,
         borderRadius: 4,
         backgroundColor: '#007AFF',
-        fontSize: 15,
+        fontSize: 14,
     },
     data: {
         justifyContent: 'space-between',
@@ -145,8 +212,14 @@ const styles = StyleSheet.create({
     author: {
         fontSize: 12,
         color: '#9b9b9b',
-    }
-
+    },
+    labelTabStyle: {
+        color: '#000000',
+        fontSize: 13,
+    },
+    indicatorStyle: {
+        backgroundColor: '#007aff',
+    },
 })
 function mapStateToProps(state) {
     return({result:  state.detail.information})
