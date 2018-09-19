@@ -1,6 +1,5 @@
 import React from 'react'
-import {Button} from 'react-native-elements'
-import {View, StyleSheet, Image, Text, TouchableHighlight, SectionList} from 'react-native'
+import {View, StyleSheet, Text, SectionList} from 'react-native'
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux'
 import {ALL_CATEGORY} from '../../constants/Category'
@@ -63,7 +62,6 @@ class Information extends React.Component {
         const {result} = this.props
         return (
             <SectionList
-            // renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
             renderItem={this._renderItem}
             renderSectionHeader={({section: {title, index}}) => (
                 <View style={{marginTop: 12, flexDirection: 'column'}}>

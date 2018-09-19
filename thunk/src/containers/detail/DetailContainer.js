@@ -7,6 +7,7 @@ import Spinner from '../../components/base/Spinner'
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux'
 import Information from './Information'
+import Comments from './Comment'
 
 
 
@@ -57,7 +58,7 @@ class DetailContainer extends React.Component {
             case 'information':
                 return <Information />
             case 'comment':
-                return <Information />
+                return <Comments />
             default:
                 return null;
         }
@@ -66,8 +67,8 @@ class DetailContainer extends React.Component {
     _renderPager = (props) => (<PagerPan {...props}
         swipeEnabled={false}
         />) 
-
-        _renderLabel(props) {
+        
+    _renderLabel(props) {
             let index = 0;
             return ({ route }) => {
               const focused = index === props.navigationState.index;
@@ -108,7 +109,7 @@ class DetailContainer extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.line}></View>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.header}>
                         <Image  style={styles.image} source={{ uri: result.link_thumbnail }}/>    
                         <View style={styles.information}>
