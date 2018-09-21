@@ -49,10 +49,10 @@ class CollectionBook extends PureComponent {
 
     _renderItem = ({item, index}) => {
         if (item.empty) {
-            return <View style={[styles.viewItem, styles.itemEmpty, index%3 == 2 ? {marginRight: 0} : {marginRight: 15}]} />;
+            return <View style={[styles.viewItem, styles.itemEmpty, index%3 == 2 ? {marginRight: 0} : {marginRight: 25}]} />;
         } else {
             return (
-                <View style={[styles.viewItem,index%3 == 2 ? {marginRight: 0} : {marginRight: 15}]}>
+                <View style={[styles.viewItem,index%3 == 2 ? {marginRight: 0} : {marginRight: 25}]}>
                 <BookCollectionCell data={item} index={index} navigation={this.props.navigation}/>
                 </View>
             )
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         marginLeft: 0,
         marginRight: 0,
+        marginBottom: 12,
         height: 18,
     },
     title: {

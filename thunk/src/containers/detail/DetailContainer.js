@@ -8,6 +8,7 @@ import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux'
 import Information from './Information'
 import Comments from './Comment'
+import {read_Book} from '../../utils/readBook'
 
 
 
@@ -29,7 +30,8 @@ class DetailContainer extends React.Component {
     };
 
     componentDidMount() {
-        this.props.get_Detail('1')
+        console.log(this.props.navigation.getParam('id'))
+        this.props.get_Detail(this.props.navigation.getParam('id'))
     }
 
     componentWillReceiveProps(nextProps) {
@@ -95,6 +97,11 @@ class DetailContainer extends React.Component {
         />
     )
 
+    // Action read book
+    _readBook = () => {
+        read_Book(this.props.result)
+    }
+
     render() {
         if(this.state.isLoading) {
              return  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -128,7 +135,7 @@ class DetailContainer extends React.Component {
                                 <TouchableHighlight style={styles.buttonLike}>
                                     <Image style={{flex: 1, width: 30, height: 30}} source={require('../../images/detail_unlike.png')} />
                                 </TouchableHighlight>
-                                <Button title={"ĐỌC"} style={styles.buttonRead}/>
+                                <Button title={"ĐỌC"} style={styles.buttonRead} onPress={() => this._readBook()}/>
                             </View>
                         </View>
                     </View>

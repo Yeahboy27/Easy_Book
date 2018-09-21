@@ -7,7 +7,7 @@ class Comments extends React.Component {
         super(props)
     }
 
-    _keyExtractor = (item, index) => index;
+    _keyExtractor = (item, index) => index.toString();
     _renderItem = ({item}) => (
         <Comment
           data={item}
@@ -16,7 +16,6 @@ class Comments extends React.Component {
 
     render() {
         const {result} = this.props
-        console.log(result)
         return (
             <View>
                 <FlatList 

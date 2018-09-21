@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, SectionList} from 'react-native'
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux'
 import {ALL_CATEGORY} from '../../constants/Category'
-import ListBook from '../../components/listBook';
+import ListBook from '../../components/Flatlist_Vertical/listBook';
 
 
 class Information extends React.Component {
@@ -60,6 +60,8 @@ class Information extends React.Component {
 
     render() {
         const {result} = this.props
+        console.log(result)
+        if(result) {
         return (
             <SectionList
             renderItem={this._renderItem}
@@ -77,7 +79,9 @@ class Information extends React.Component {
             ]}
             keyExtractor={(item, index) => item + index}
             />
-        )
+        )} else {
+            return <View> </View>
+        }
     }
 }
 

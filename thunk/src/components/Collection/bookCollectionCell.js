@@ -17,7 +17,9 @@ class BookCollectionCell extends PureComponent {
         var data = this.props.data
         return (
             <View style={[styles.container]}>
-                <TouchableOpacity style={styles.viewImage} onPress={() => this.props.navigation.push('Detail')}>
+                <TouchableOpacity style={styles.viewImage} onPress={() => this.props.navigation.push('Detail', {
+                    id: data.id
+                })}>
                     <Image  style={styles.image} source={{ uri: data.link_thumbnail }}/>    
                 </TouchableOpacity>
                 <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>{data.title}</Text>
@@ -35,13 +37,13 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         width: '100%',
         height: '100%',
-        minHeight: 150,
+        minHeight: 135,
     },
     viewImage: {
         marginTop: 0,
         marginLeft: 0,
         width: '100%',
-        height: '72%',
+        height: '70%',
         shadowOpacity: 0.8,
         shadowColor: '#ddd',
         shadowRadius: 0,

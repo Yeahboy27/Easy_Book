@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ScrollView, Text, Button} from 'react-native';
 import { connect } from 'react-redux';
-import CollectionBook from '../../components/collectionBook';
+import CollectionBook from '../../components/Collection/collectionBook';
 import Spinner from '../../components/base/Spinner'
 
 

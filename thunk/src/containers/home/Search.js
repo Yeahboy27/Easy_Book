@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet,TextInput,  Platform, NativeModules, TouchableOpacity, Text} from 'react-native';
 import { SearchBar } from 'react-native-elements'
 import * as action from '../../actions/home'
-import CollectionBook from '../../components/collectionBook';
+import CollectionBook from '../../components/Collection/collectionBook';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 

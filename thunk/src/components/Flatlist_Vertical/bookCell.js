@@ -7,14 +7,17 @@ class BookCell extends PureComponent {
     }
 
     render() {
+        const {data} = this.props
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={{width: 90, height: 140}} onPress={() => this.props.navigation.push('Detail')}>
-                    <Image  style={styles.image} source={{uri: this.props.url}}/>
+                <TouchableOpacity style={{width: 90, height: 140}} onPress={() => this.props.navigation.push('Detail', {
+                    id: data.id
+                })}>
+                    <Image  style={styles.image} source={{uri: data.link_thumbnail}}/>
                 </TouchableOpacity>
-                <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>{this.props.title}</Text>
+                <Text style={styles.title} numberOfLines={2} ellipsizeMode='tail'>{data.title}</Text>
                 <Text style = {styles.author} numberOfLines={1} ellipsizeMode='tail'>
-                    {this.props.author}
+                    {data.authors}
                 </Text>
             </View>
         )

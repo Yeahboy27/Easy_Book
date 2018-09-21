@@ -30,6 +30,28 @@ const StackHome = createStackNavigator({
       }
 })
 
+const StackLibrary = createStackNavigator({
+    Library: LibraryContainer, 
+    Detail : DetailContainer,
+}, {
+    initialRouteName: 'Library',
+    navigationOptions: {
+        title: 'Thư viện',
+        headerStyle: {
+          backgroundColor: "#f7f7f7",
+          borderBottomWidth: 0,
+        },
+        headerTitleStyle: {
+          fontWeight: "normal",
+          color: "#000000",
+          zIndex: 1,
+          fontSize: 18,
+          lineHeight: 23,
+        },
+        headerTintColor: "#fff"
+    }
+})
+
 const TabContainer = createBottomTabNavigator (
     {
         Main: {
@@ -45,7 +67,7 @@ const TabContainer = createBottomTabNavigator (
             }
         }  ,
         Library: {
-            screen: LibraryContainer,
+            screen: StackLibrary,
             navigationOptions: {
                 tabBarLabel: 'Thư viện',
                 tabBarIcon:({ focused }) =>  (

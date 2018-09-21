@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, ScrollView, Text} from 'react-native';
-import ListBook from '../../components/listBook';
-import CollectionBook from '../../components/collectionBook';
-import HeaderHighlight from '../../components/header'
+import ListBook from '../../components/Flatlist_Vertical/listBook';
+import CollectionBook from '../../components/Collection/collectionBook';
+import HeaderHighlight from '../../components/Collection/header'
 import { connect } from 'react-redux'
 import Spinner from '../../components/base/Spinner'
 

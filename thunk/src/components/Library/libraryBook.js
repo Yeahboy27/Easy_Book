@@ -1,22 +1,26 @@
 import React, {PureComponent} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-class LibraryBookComponent extends PureComponent {
+
+export default class LibraryBook extends PureComponent {
     constructor(props) {
         super(props);
     }
 
     render() {
+        const {data} = this.props
+        console.log(data)
         return(
             <View style = {styles.container} >
-                <Image style ={styles.image} source={{ uri: this.props.url }}/>
+                <Image style ={styles.image} source={{ uri: data.link_thumbnail}}/>
                 <View style = {styles.information}>
                     <View style={styles.detailInfo}>
-                        <Text style={styles.title}>{this.props.title} </Text>
-                        <Text style={styles.chapter}>{this.props.chapter}</Text>
+                        <Text style={styles.title}>{data.title} </Text>
+                        <Text style={styles.chapter}>{data.authors}</Text>
                     </View>
                     <View style={styles.timeView}>
-                        <Text style={styles.time}>{this.props.time}</Text>
+                        <Text style={styles.time}>{data.time}</Text>
                     </View>
                 </View>
             </View>
@@ -80,4 +84,3 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LibraryBookComponent;

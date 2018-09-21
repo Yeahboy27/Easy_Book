@@ -12,13 +12,13 @@ export default class Comment extends React.Component {
         return (
             <View style={styles.container}> 
                 <View style={{width: 40, marginRight: 15}}>
-                    <Image style={styles.avatar} source={{uri: this.props.data.creator.avatar}}/>
+                    <Image style={styles.avatar} source={{uri: data.creator.avatar}}/>
                 </View>
                 <View style={styles.information}> 
-                    <Text style={{}} numberOfLines={3} ellipsizeMode='tail' textAlign ={'right'}>{this.props.data.content}</Text>
+                    <Text style={{}} numberOfLines={3} ellipsizeMode='tail' textAlign ={'right'}>{data.content}</Text>
                     <View style={{flexDirection: 'row', marginTop: 3}}> 
-                        <Text style={styles.creator}>{this.props.data.creator.username} -</Text>
-                        <Text style={[styles.creator, {marginLeft: 12}]}>{this.props.data.created_at}</Text>
+                        <Text style={styles.creator}>{data.creator.username} -</Text>
+                        <Text style={[styles.creator, {marginLeft: 12}]}>{data.created_at}</Text>
                     </View>
                 </View>
             </View>
