@@ -30,18 +30,27 @@ export default class LibraryBook extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 12,
+        marginRight: 8,
+        marginLeft: 10,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        marginLeft: 10,
-        marginRight: 0,
-        height: 120,
+        height: 130,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10,
+        shadowColor: '#BDBDBD',
+        shadowOffset: {
+        width: 3,
+        height: 3
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
     },
     image: {
-        marginTop: 0,
-        marginLeft: 0,
+        marginTop: 5 ,
+        marginLeft: 8,
         width: 80,
         height: 120,
-        borderRadius: 4,
     },
     information: {
         flex: 1,
@@ -54,24 +63,25 @@ const styles = StyleSheet.create({
     detailInfo: {
         marginLeft: 0,
         marginBottom: 0,
-        flex: 1,
+        marginRight: 25,
+        height: '65%',
         flexDirection: 'column',
         justifyContent: 'flex-end',
     },
     timeView: {
         marginLeft: 0,
-        marginBottom: 0,
-        flex: 1,
+        marginBottom: 5,
+        height: '35%',
         justifyContent: 'flex-end'
     },
     title: {
-        marginBottom: 0,
+        marginBottom: 3,
         marginLeft: 0,
         color: '#141626',
-        fontSize: 15,
+        fontSize: 13,
     },
     chapter: {
-        marginBottom: 5,
+        marginBottom: 8,
         marginLeft: 0,
         color: '#9b9b9b',
         fontSize: 13,

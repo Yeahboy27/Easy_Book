@@ -21,7 +21,7 @@ class ListBook extends PureComponent {
                     <TouchableOpacity style={styles.getAll}><Text style={styles.labelGetAll}>Xem Tất Cả</Text></TouchableOpacity>
                 </View>
                 <FlatList data={this.props.data}
-                    ItemSeparatorComponent={() => <View style={{ margin: 5 }} />}
+                    ItemSeparatorComponent={() => <View style={{ margin: 8 }} />}
                     renderItem = {this._renderItem}
                     keyExtractor = {this._keyExtractor}
                     horizontal = {true}

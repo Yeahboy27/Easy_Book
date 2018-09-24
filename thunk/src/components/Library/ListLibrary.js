@@ -17,7 +17,7 @@ export default class ListLibrary extends PureComponent {
         return (
             <View style={styles.container}>
                 <FlatList data={this.props.data}
-                    ItemSeparatorComponent={() => <View style={{ margin: 5 }} />}
+                    ItemSeparatorComponent={() => <View style={{ margin: 1 }} />}
                     renderItem = {this._renderItem}
                     keyExtractor = {this._keyExtractor}
                     style ={styles.flatList}
@@ -30,19 +30,9 @@ export default class ListLibrary extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 12
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 0,
-        marginLeft: 0,
-        marginRight: 0,
-        height: 18,
+        flex: 1,
     },
     flatList: {
-        marginTop: 12,
-        marginLeft: 10,
         marginRight: 0,
         marginBottom: 0,
     },

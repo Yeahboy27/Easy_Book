@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
+        shadowColor: '#BDBDBD',
+        shadowOffset: {
+        width: 1,
+        height: 1
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
     },
     image: {
         width: 90,

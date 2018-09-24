@@ -20,8 +20,8 @@ export default class LibraryContainer extends React.Component {
         switch (route.key) {
             case 'recent':
                 return <Recent />
-            // case 'liked':
-            //     return <Recent navigation={this.props.navigation}/>
+            case 'liked':
+                return <Recent />
             // case 'download':
             //     return <Recent navigation={this.props.navigation}/>
             default:
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
+        backgroundColor: '#E7E7E7'
     },
     tabView: {
         flex: 1,

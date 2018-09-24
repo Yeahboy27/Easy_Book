@@ -38,6 +38,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         minHeight: 135,
+        shadowColor: '#BDBDBD',
+        shadowOffset: {
+        width: 3,
+        height: 3
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
     },
     viewImage: {
         marginTop: 0,

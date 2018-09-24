@@ -2,7 +2,6 @@ import React from 'react'
 import { View, StyleSheet} from 'react-native';
 import ListLibrary from '../../components/Library/ListLibrary'
 import { AsyncStorage } from "react-native"
-import { withNavigation } from 'react-navigation';
 import Spinner from '../../components/base/Spinner'
 
 
@@ -20,6 +19,7 @@ export default class Recent extends React.Component {
                 alert('Có lỗi xảy ra')
                 return 
             }
+            console.log(result)
             var input = JSON.parse(result)
             var output = [], item ;
             for (var key in input) {
@@ -53,6 +53,7 @@ export default class Recent extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#e7e7e7'
     }
 })
